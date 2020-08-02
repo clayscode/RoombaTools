@@ -1,0 +1,24 @@
+syntax = 'proto3';
+
+message RoombaControlRequest {
+	double rotatedegrees = 1;
+	double speed = 2;
+}	
+
+message RoombaControlResponse {
+	bool success = 1;
+	string error = 2;
+}
+
+message AckRequest {
+	bool ack = 1;
+}
+
+message AckResponse {
+	bool ack = 1;
+}
+
+service RoombaControler{
+	rpc RoombaControl (stream RoombaControlRequest) returns (stream RoombaControlResponse);
+	rpc Ack (AckRequest) returns (AckResponse);
+}
